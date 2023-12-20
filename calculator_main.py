@@ -26,15 +26,40 @@ class Main(QDialog):
 
         #operation 구간#
 
+        ### % 버튼
+        button_mod = QPushButton("%")
+        # 기능 구현
+        layout_operation.addWidget(button_mod,0,0)
+
+        ### CE 버튼
+        button_CE = QPushButton("CE")
+        # 기능 구현
+        layout_operation.addWidget(button_CE,0,1)
+
         ### clear 버튼
-        button_clear = QPushButton("Clear")
+        button_clear = QPushButton("C")
         button_clear.clicked.connect(self.button_clear_clicked)
-        layout_operation.addWidget(button_clear,0,1)
+        layout_operation.addWidget(button_clear,0,2)
 
         ### backspace 버튼
-        button_backspace = QPushButton("Backspace")
+        button_backspace = QPushButton("←")
         button_backspace.clicked.connect(self.button_backspace_clicked)
         layout_operation.addWidget(button_backspace,0,3)
+
+        ### 1/x
+        button_inverse = QPushButton("1/x")
+        # 기능 구현
+        layout_operation.addWidget(button_inverse,1,0)
+
+        ### x^2
+        button_square = QPushButton("x^2")
+        # 기능 구현
+        layout_operation.addWidget(button_square,1,1)
+
+        ### 루트 x
+        button_root = QPushButton("√x")
+        # 기능 구현
+        layout_operation.addWidget(button_root,1,2)
         
         # / 버튼
         button_division = QPushButton("/")
