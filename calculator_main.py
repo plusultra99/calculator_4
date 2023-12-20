@@ -1,4 +1,5 @@
 import sys
+import math
 from PyQt5.QtWidgets import *
 
 class Main(QDialog):
@@ -28,12 +29,12 @@ class Main(QDialog):
 
         ### % 버튼
         button_mod = QPushButton("%")
-        # 기능 구현
+        button_mod.clicked.connect(lambda state, operation = "%": self.button_operation_clicked(operation))
         layout_operation.addWidget(button_mod,0,0)
 
         ### CE 버튼
         button_CE = QPushButton("CE")
-        # 기능 구현
+        button_CE.clicked.connect(self.button_clear_clicked)
         layout_operation.addWidget(button_CE,0,1)
 
         ### clear 버튼
@@ -46,19 +47,19 @@ class Main(QDialog):
         button_backspace.clicked.connect(self.button_backspace_clicked)
         layout_operation.addWidget(button_backspace,0,3)
 
-        ### 1/x
+        ### 1/x 버튼
         button_inverse = QPushButton("1/x")
-        # 기능 구현
+        button_inverse.clicked.connect(self.button_inverse_clicked)
         layout_operation.addWidget(button_inverse,1,0)
 
-        ### x^2
+        ### x^2 버튼
         button_square = QPushButton("x^2")
-        # 기능 구현
+        button_square.clicked.connect(self.button_square_clicked)
         layout_operation.addWidget(button_square,1,1)
 
-        ### 루트 x
+        ### 루트 x 버튼
         button_root = QPushButton("√x")
-        # 기능 구현
+        button_root.clicked.connect(self.button_root_clicked)
         layout_operation.addWidget(button_root,1,2)
         
         # / 버튼
@@ -138,11 +139,25 @@ class Main(QDialog):
     def button_clear_clicked(self):
         self.equation.setText("")
         
-
     def button_backspace_clicked(self):
         equation = self.equation.text()
         equation = equation[:-1]
         self.equation.setText(equation)
+
+    def  button_inverse_clicked(self):
+        equation = float(self.equation.text())
+        equation = 1/equation
+        self.equation.setText(str(equation))
+    
+    def  button_square_clicked(self):
+        equation = float(self.equation.text())
+        equation = math.pow(equation,2)
+        self.equation.setText(str(equation))
+
+    def  button_root_clicked(self):
+        equation = float(self.equation.text())
+        equation = math.sqrt(equation)
+        self.equation.setText(str(equation))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
